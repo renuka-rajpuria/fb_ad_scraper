@@ -4,7 +4,7 @@ A Chrome extension that scrapes Facebook ads via the Facebook Ad Manager for com
 
 ## Overview
 
-Ad Trace lets you input a competitor's Facebook Ad Library link, scrape their active ads, and generate structured reports. It is built for teams who want to monitor competitor ad activity without manual effort.
+Ad Trace lets you input a competitor's Facebook Ad Library link, auto-scroll and scrape all their ads sorted by impressions, and download a structured CSV report — all from a persistent side panel without leaving your browser.
 
 ## File Structure
 
@@ -32,17 +32,22 @@ fb_ad_scraper/
 ## Features
 
 ### Done
-- [ ] _(features will be marked as done once developed)_
+- [x] Add a competitor's Facebook Ad Library link to scrape their ads
+- [x] Auto-scroll to load all ads (sorted by total impressions)
+- [x] Filter by active ads only or all ads
+- [x] Scrape ad data: advertiser name, status, media type, platforms, ad body, headline, CTA text, CTA link, start date, number of variants, library ID, ad detail link
+- [x] Side panel UI — stays open while scraping happens in the active tab
+- [x] Live scraping progress via badge colour (yellow = in progress, green = done, red = failed)
+- [x] Download scraped ad data as a CSV report
 
 ### To Do
-- [ ] Add a competitor's Facebook Ad Library link to scrape their ads
-- [ ] Download scraped ad data as a CSV report
 - [ ] Save competitors for frequent use (persistent competitor list)
 - [ ] Get an AI-generated summary of competitor ad strategy
 - [ ] Receive the report via email
 - [ ] Set frequency and schedule for automated report downloads
 - [ ] Incremental scraping — resume from last scraped ad instead of starting from the beginning every time
 - [ ] Download ad creative images
+- [ ] Multiple competitor scraping and CSV downloads (V2)
 
 ## Setup
 
