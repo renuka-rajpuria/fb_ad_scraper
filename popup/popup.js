@@ -3,11 +3,15 @@ const errorMsg = document.getElementById('error-msg');
 const statusBox = document.getElementById('status-box');
 const resultsBox = document.getElementById('results-box');
 const resultsSummary = document.getElementById('results-summary');
+const downloadBtn = document.getElementById('download-btn');
 
-// On popup open, check if background has stored results
+let currentAds = [];
+
+// On panel open, check if background has stored results
 chrome.runtime.sendMessage({ type: 'getAds' }, (response) => {
   if (response && response.ads && response.ads.length > 0) {
-    showResults(response.ads.length);
+    currentAds = response.ads;
+    showResults(currentAds.length);
   }
 });
 
@@ -38,10 +42,11 @@ chrome.runtime.onMessage.addListener((msg) => {
     document.getElementById('status-text').textContent = 'Scraping in progress... loading ads.';
   }
   if (msg.type === 'done') {
+    currentAds = msg.ads;
     statusBox.classList.add('hidden');
     scrapeBtn.disabled = false;
     scrapeBtn.textContent = 'Scrape';
-    showResults(msg.ads.length);
+    showResults(currentAds.length);
   }
   if (msg.type === 'error') {
     statusBox.classList.add('hidden');
@@ -51,7 +56,19 @@ chrome.runtime.onMessage.addListener((msg) => {
   }
 });
 
+downloadBtn.addEventListener('click', () => {
+  if (!currentAds.length) return;
+  const csv = convertToCSV(currentAds);
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `ad_trace_${Date.now()}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
 function showResults(count) {
   resultsBox.classList.remove('hidden');
-  resultsSummary.textContent = `${count} ads scraped successfully.`;
+  resultsSummary.textContent = `${count} ads scraped — sorted by impressions.`;
 }
