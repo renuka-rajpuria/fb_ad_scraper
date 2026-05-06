@@ -15,6 +15,18 @@
     </label>
     <button id="scrape-btn">Scrape</button>
     <p id="error-msg" class="error-msg"></p>
+
+    <div id="status-box" class="status-box hidden">
+      <div id="progress-bar-wrap">
+        <div id="progress-bar"></div>
+      </div>
+      <p id="status-text">Scraping in progress... loading ads.</p>
+    </div>
+
+    <div id="results-box" class="results-box hidden">
+      <p id="results-summary"></p>
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>

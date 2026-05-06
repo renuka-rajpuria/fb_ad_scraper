@@ -109,6 +109,7 @@ function parseAdCards() {
 
 async function autoScrollAndParse() {
   console.log('Ad Trace: starting auto-scroll to load all ads...');
+  try {
   let lastCount = 0;
   let stableRounds = 0;
 
@@ -122,13 +123,19 @@ async function autoScrollAndParse() {
     } else {
       stableRounds = 0;
       lastCount = currentCount;
+      chrome.runtime.sendMessage({ type: 'progress', count: currentCount });
     }
   }
 
-  console.log('Ad Trace: all ads loaded, parsing...');
-  const ads = parseAdCards();
-  console.log(`Ad Trace: total ads parsed: ${ads.length}`);
-  console.log('Ad Trace: parsed ads:', JSON.stringify(ads, null, 2));
+    console.log('Ad Trace: all ads loaded, parsing...');
+    const ads = parseAdCards();
+    console.log(`Ad Trace: total ads parsed: ${ads.length}`);
+    console.log('Ad Trace: parsed ads:', JSON.stringify(ads, null, 2));
+    chrome.runtime.sendMessage({ type: 'done', ads });
+  } catch (err) {
+    console.error('Ad Trace: scraping failed', err);
+    chrome.runtime.sendMessage({ type: 'error' });
+  }
 }
 
 // Wait for initial ad cards to appear, then auto-scroll and parse
