@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Ad Trace",
+  "version": "1.0.0",
+  "description": "Scrape Facebook ads via Ad Library for competitor analysis.",
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}
