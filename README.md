@@ -41,6 +41,8 @@ fb_ad_scraper/
 - [ ] Get an AI-generated summary of competitor ad strategy
 - [ ] Receive the report via email
 - [ ] Set frequency and schedule for automated report downloads
+- [ ] Incremental scraping — resume from last scraped ad instead of starting from the beginning every time
+- [ ] Download ad creative images
 
 ## Setup
 

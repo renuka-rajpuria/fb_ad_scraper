@@ -9,5 +9,10 @@ document.getElementById('scrape-btn').addEventListener('click', () => {
   }
 
   errorMsg.textContent = '';
-  console.log('URL entered:', url);
+  const activeOnly = document.getElementById('active-only').checked;
+  const urlObj = new URL(url);
+  urlObj.searchParams.set('active_status', activeOnly ? 'active' : 'all');
+  urlObj.searchParams.set('sort_data[mode]', 'total_impressions');
+  urlObj.searchParams.set('sort_data[direction]', 'desc');
+  chrome.tabs.create({ url: urlObj.toString() });
 });

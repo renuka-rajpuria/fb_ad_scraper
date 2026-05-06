@@ -9,6 +9,10 @@
     <h1>Ad Trace</h1>
     <p class="subtext">Get the URL from <a href="https://www.facebook.com/ads/library/" target="_blank">Facebook Ad Library</a></p>
     <input type="text" id="url-input" placeholder="Paste Facebook Ad Library URL" />
+    <label class="toggle-label">
+      <input type="checkbox" id="active-only" checked />
+      Active ads only
+    </label>
     <button id="scrape-btn">Scrape</button>
     <p id="error-msg" class="error-msg"></p>
     <script src="popup.js"></script>
