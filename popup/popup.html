@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ad Trace</title>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
     <h1>Ad Trace</h1>
+    <p class="subtext">Get the URL from <a href="https://www.facebook.com/ads/library/" target="_blank">Facebook Ad Library</a></p>
+    <input type="text" id="url-input" placeholder="Paste Facebook Ad Library URL" />
+    <button id="scrape-btn">Scrape</button>
+    <p id="error-msg" class="error-msg"></p>
+    <script src="popup.js"></script>
   </body>
 </html>
